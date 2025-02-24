@@ -1,0 +1,16 @@
+# Node modules folder
+node_modules/
+
+# Environment variables
+.env
+
+
+# Build/production output
+dist/
+build/
+
+
+# Editor/IDE-specific
+.vscode/
+*.swp
+.idea/
