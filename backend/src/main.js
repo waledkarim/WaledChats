@@ -5,8 +5,7 @@ const cors = require("cors");
 const connectDB = require("./lib/db");
 const authRoutes = require("./routes/auth.route");
 const messageRoutes = require("./routes/message.route");
-
-const app = express();
+const { app, server, io } = require('./lib/socket');
 
 const PORT = process.env.PORT || 3000;
 
@@ -25,7 +24,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectDB();
   console.log("Server is running on PORT:" + PORT);
 });
