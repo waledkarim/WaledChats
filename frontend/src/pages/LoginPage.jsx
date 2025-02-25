@@ -24,7 +24,7 @@ const LoginPage = () => {
 
   return (
     
-    <div className="h-screen pt-16 grid lg:grid-cols-2">
+    <div className="pt-16 grid lg:grid-cols-2">
 
       {/* Left Side - Form */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
