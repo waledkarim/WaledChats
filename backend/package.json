@@ -6,7 +6,8 @@
     "nodemon": "^3.1.9"
   },
   "scripts": {
-    "start": "nodemon src/main.js"
+    "dev": "nodemon src/main.js",
+    "start": "node src/main.js"
   },
   "keywords": [],
   "author": "",
