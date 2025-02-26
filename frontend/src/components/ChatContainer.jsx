@@ -29,7 +29,7 @@ const ChatContainer = () => {
 
     if(messageEndRef.current && messages){
       
-      messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      messageEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
 
     }
     
