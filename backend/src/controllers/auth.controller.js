@@ -4,9 +4,11 @@ const bcrypt = require("bcryptjs");
 const cloudinary = require("../lib/cloudinary");
 
 module.exports.signup = async (req, res) => {
+
   const { fullName, email, password } = req.body;
 
   try {
+
     if (!fullName || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
@@ -29,7 +31,7 @@ module.exports.signup = async (req, res) => {
     });
 
     if (newUser) {
-      // generate jwt token here
+      
       generateToken(newUser._id, res);
       await newUser.save();
 
@@ -41,13 +43,19 @@ module.exports.signup = async (req, res) => {
       });
 
     } else {
+
       res.status(400).json({ message: "Invalid user data" });
+
     }
+
+    console.log("Signup controller: User created successfully");
 
 
   } catch (error) {
+
     console.log("Error in signup controller", error.message);
     res.status(500).json({ message: "Internal Server Error" });
+
   }
 };
 
@@ -79,8 +87,10 @@ module.exports.login = async (req, res) => {
 
 
   } catch (error) {
+
     console.log("Error in login controller", error.message);
     res.status(500).json({ message: "Internal Server Error" });
+
   }
 };
 
@@ -91,14 +101,16 @@ module.exports.logout = (req, res) => {
     res.clearCookie("jwt", {
     httpOnly: true, // prevent XSS attacks cross-site scripting attacks
     sameSite: "strict", // CSRF attacks cross-site request forgery attacks
-    secure: process.env.NODE_ENV !== "development",
+    secure: process.env.NODE_ENV !== "development", // Secured in production
   });
 
     res.status(200).json({ message: "Logged out successfully" });
 
   } catch (error) {
+
     console.log("Error in logout controller", error.message);
     res.status(500).json({ message: "Internal Server Error" });
+
   }
 
 };
@@ -107,8 +119,8 @@ module.exports.updateProfile = async (req, res) => {
 
   try {
 
-    const { profilePic } = req.body;
     const userId = req.user._id;
+    const { profilePic } = req.body;
 
     if (!profilePic) {
       return res.status(400).json({ message: "Profile pic is required" });
@@ -132,7 +144,9 @@ module.exports.updateProfile = async (req, res) => {
 
 module.exports.checkAuth = (req, res) => {
   try {
+
     res.status(200).json(req.user);
+    
   } catch (error) {
     console.log("Error in checkAuth controller", error.message);
     res.status(500).json({ message: "Internal Server Error" });

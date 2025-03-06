@@ -1,7 +1,6 @@
+require('dotenv').config({ path: require('path').join(__dirname, '../../.env') });
 const connectDB  = require("../lib/db");
 const User = require("../models/user.model");
-
-require('dotenv').config({ path: require('path').join(__dirname, '../../.env') });
 
 
 const seedUsers = [
@@ -102,14 +101,17 @@ const seedUsers = [
 
 const seedDatabase = async () => {
   try {
-    await connectDB();
 
+    await connectDB();
     await User.insertMany(seedUsers);
     console.log("Database seeded successfully");
+
   } catch (error) {
+
     console.error("Error seeding database:", error);
+    
   }
 };
 
-// Call the function
+
 seedDatabase();

@@ -13,7 +13,6 @@ export const useAuthStore = create((set, get) => ({
     isUpdatingProfile: false,
     onlineUsers: [],
     socket: null,
-
     isCheckingAuth: true,
 
     checkAuth: async () => {
@@ -113,7 +112,6 @@ export const useAuthStore = create((set, get) => ({
         }
 
     },
-
 
     connectSocket: () => {
 

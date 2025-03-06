@@ -7,7 +7,7 @@ module.exports.getUsersForSidebar = async (req, res) => {
   try {
 
     const loggedInUserId = req.user._id;
-    const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } }).select("-password");
+    const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } }).select("-password").sort({createdAt: -1});
 
     res.status(200).json(filteredUsers);
 
@@ -19,6 +19,7 @@ module.exports.getUsersForSidebar = async (req, res) => {
 
 module.exports.getMessages = async (req, res) => {
   try {
+
     const { id: userToChatId } = req.params;
     const myId = req.user._id;
 
@@ -39,15 +40,17 @@ module.exports.getMessages = async (req, res) => {
 
 module.exports.sendMessage = async (req, res) => {
   try {
+
+    const senderId = req.user._id;
     const { text, image } = req.body;
     const { id: receiverId } = req.params;
-    const senderId = req.user._id;
 
     let imageUrl;
     if (image) {
 
       const uploadResponse = await cloudinary.uploader.upload(image);
       imageUrl = uploadResponse.secure_url;
+
     }
 
     const newMessage = new Message({
@@ -56,10 +59,10 @@ module.exports.sendMessage = async (req, res) => {
       text,
       image: imageUrl,
     });
-
     await newMessage.save();
 
     const receiverSocketId = getReceiverSocketId(receiverId);
+    
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("newMessage", newMessage);
     }
