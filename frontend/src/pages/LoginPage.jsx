@@ -27,7 +27,7 @@ const LoginPage = () => {
     <div className="pt-16 grid lg:grid-cols-2">
 
       {/* Left Side - Form */}
-      <div className="flex flex-col justify-center items-center p-6 sm:p-12">
+      <div className="flex flex-col justify-center items-center p-6 h-screen sm:p-12">
 
             <div className="w-full max-w-md space-y-8">
 
