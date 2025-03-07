@@ -8,7 +8,15 @@ import { formatMessageTime } from "../lib/utils";
 
 const ChatContainer = () => {
 
-  const { messages, getMessages, isMessagesLoading, selectedUser, subscribeToMessages, unsubscribeFromMessages } = useChatStore();
+  const { 
+    messages, 
+    getMessages, 
+    isMessagesLoading, 
+    selectedUser, 
+    subscribeToMessages, 
+    unsubscribeFromMessages 
+  } = useChatStore();
+
   const { authUser } = useAuthStore();
 
   const messageEndRef = useRef()

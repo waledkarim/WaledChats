@@ -9,7 +9,8 @@ const { app, server, io } = require('./lib/socket');
 const path = require("path");
 
 //Constants.
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
+const __dirname = path.resolve();
 
 
 //Application-Level Middlewares.
