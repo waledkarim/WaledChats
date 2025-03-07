@@ -112,7 +112,7 @@ const ChatContainer = () => {
               }
 
           </div>
-        <MessageInput />
+          <MessageInput />
 
 
     </div>
