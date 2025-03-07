@@ -10,8 +10,6 @@ const path = require("path");
 
 //Constants.
 const PORT = process.env.PORT;
-const __dirname = path.resolve();
-
 
 //Application-Level Middlewares.
 app.use(express.json());
