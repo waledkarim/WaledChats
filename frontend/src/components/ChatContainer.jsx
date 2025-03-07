@@ -74,7 +74,7 @@ const ChatContainer = () => {
 
                           <div className=" chat-image avatar">
 
-                                <div className="size-10 rounded-full border">
+                                <div className="size-10 rounded-full border-2 border-primary">
                                   <img
                                     src={
                                       message.senderId === authUser._id
@@ -93,7 +93,7 @@ const ChatContainer = () => {
                             </time>
                           </div>
                           
-                          <div className="chat-bubble flex flex-col">
+                          <div className="chat-bubble flex flex-col bg-primary text-primary-content">
                             {message.image && (
                               <img
                                 src={message.image}
