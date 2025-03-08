@@ -120,13 +120,14 @@ module.exports.updateProfile = async (req, res) => {
   try {
 
     const userId = req.user._id;
-    const { profilePic } = req.body;
+    const profilePic = req.file;
 
     if (!profilePic) {
       return res.status(400).json({ message: "Profile pic is required" });
     }
 
-    const uploadResponse = await cloudinary.uploader.upload(profilePic);
+    const base64String = `data:${profilePic.mimetype};base64,` + profilePic.buffer.toString('base64');
+    const uploadResponse = await cloudinary.uploader.upload(base64String);
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,

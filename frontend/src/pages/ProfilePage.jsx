@@ -18,13 +18,13 @@ const ProfilePage = () => {
 
       reader.readAsDataURL(file);
 
-      reader.onload = async () => {
+      reader.onload = () => {
 
         const base64Image = reader.result;
         setSelectedImg(base64Image);
-        await updateProfile({ profilePic: base64Image });
-
+        
       };
+      await updateProfile(file);
       
     } catch (error) {
       toast.error("An error occured: ", error);
@@ -50,7 +50,7 @@ const ProfilePage = () => {
                 {/* avatar upload section */}
                 <div className="flex flex-col items-center gap-4">
 
-                  <div className="relative">
+                  <form method="post" encType="mutipart/form-data" className="relative">
 
                     <img
                       src={selectedImg || authUser.profilePic || "/avatar.png"}
@@ -66,19 +66,20 @@ const ProfilePage = () => {
                         transition-all duration-200
                         ${isUpdatingProfile ? "animate-pulse pointer-events-none" : ""}`}>
 
-                          <Camera className="size-5 text-base-200" />
-                          <input
-                            type="file"
-                            id="avatar-upload"
-                            className="hidden"
-                            accept="image/*"
-                            onChange={handleImageUpload}
-                            disabled={isUpdatingProfile}
-                          />
+                            <Camera className="size-5 text-base-200" />
+                            <input
+                              type="file"
+                              id="avatar-upload"
+                              name="avatar-upload"
+                              className="hidden"
+                              accept="image/*"
+                              onChange={handleImageUpload}
+                              disabled={isUpdatingProfile}
+                            />
 
                     </label>
 
-                  </div>
+                  </form>
 
                   <p className="text-sm text-zinc-400">
                     {isUpdatingProfile ? "Uploading..." : "Click the camera icon to update your photo"}
