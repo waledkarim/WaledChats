@@ -9,20 +9,27 @@ const ProfilePage = () => {
 
   const handleImageUpload = async (e) => {
 
-    const file = e.target.files[0];
-    if (!file) return;
+    try {
 
-    const reader = new FileReader();
+      const file = e.target.files[0];
+      if (!file) return;
 
-    reader.readAsDataURL(file);
+      const reader = new FileReader();
 
-    reader.onload = async () => {
+      reader.readAsDataURL(file);
 
-      const base64Image = reader.result;
-      setSelectedImg(base64Image);
-      await updateProfile({ profilePic: base64Image });
+      reader.onload = async () => {
 
-    };
+        const base64Image = reader.result;
+        setSelectedImg(base64Image);
+        await updateProfile({ profilePic: base64Image });
+
+      };
+      
+    } catch (error) {
+      toast.error("An error occured: ", error);
+      return console.log("An error occured: ", error);
+    }
 
   };
 
