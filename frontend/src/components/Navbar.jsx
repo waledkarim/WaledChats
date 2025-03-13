@@ -45,7 +45,7 @@ const Navbar = () => {
                         <Link to={"/profile"} className={`btn btn-sm btn-circle`}>
                             <img 
                                 src={authUser.profilePic || "/avatar.png"}
-                                className="hidden sm:inline-block rounded-full bg-red-50"
+                                className="sm:inline-block rounded-full"
                             />
                         </Link>
 
