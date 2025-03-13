@@ -7,6 +7,8 @@ const ProfilePage = () => {
   const {authUser, isUpdatingProfile, updateProfile } = useAuthStore();
   const [selectedImg, setSelectedImg] = useState(null);
 
+  console.log(authUser);
+
   const handleImageUpload = async (e) => {
 
     try {
@@ -39,7 +41,7 @@ const ProfilePage = () => {
         <div className="max-w-2xl mx-auto p-4 py-8">
 
             <div className="bg-base-300 rounded-xl p-6 space-y-8">
-
+                {/* headings and titles */}
                 <div className="text-center">
 
                   <h1 className="text-2xl font-semibold ">Profile</h1>

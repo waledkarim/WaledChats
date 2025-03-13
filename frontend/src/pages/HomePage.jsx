@@ -1,22 +1,12 @@
 import { useChatStore } from "../store/useChatStore";
-
 import Sidebar from "../components/Sidebar";
 import NoChatSelected from "../components/NoChatSelected";
 import ChatContainer from "../components/ChatContainer";
-import { useEffect } from "react";
 
 const HomePage = () => {
   
   const { selectedUser } = useChatStore();
 
-  useEffect(() => {
-
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth'
-    });
-    
-  }, [])
 
   return (
     <div className="h-screen bg-base-200">

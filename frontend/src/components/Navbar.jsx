@@ -29,7 +29,7 @@ const Navbar = () => {
 
 
                 {/* Setting, Logout and Profiles */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-4">
 
                     <Link
                     to={"/settings"}
@@ -42,12 +42,14 @@ const Navbar = () => {
 
                     {authUser && (
                     <>
-                        <Link to={"/profile"} className={`btn btn-sm gap-2`}>
-                            <User className="size-5" />
-                            <span className="hidden sm:inline">Profile</span>
+                        <Link to={"/profile"} className={`btn btn-sm btn-circle`}>
+                            <img 
+                                src={authUser.profilePic || "/avatar.png"}
+                                className="hidden sm:inline-block rounded-full bg-red-50"
+                            />
                         </Link>
 
-                        <button className="flex gap-2 items-center" onClick={logout}>
+                        <button className="flex btn btn-sm items-center" onClick={logout}>
                             <LogOut className="size-5" />
                             <span className="hidden sm:inline">Logout</span>
                         </button>
